@@ -12,19 +12,19 @@ import {
   darkTheme,
 } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { polygonMumbai } from 'wagmi/chains';
+import { bscTestnet, polygonMumbai } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [polygonMumbai],
+  [bscTestnet],
   [
     jsonRpcProvider({
       rpc: (chain) => {
         return {
-          http: 'https://polygon-mumbai.gateway.tenderly.co',
+          http: 'https://bsc-testnet.publicnode.com	',
         };
       },
     }),
