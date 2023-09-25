@@ -1,6 +1,6 @@
 import { useContractWrite, useWaitForTransaction } from 'wagmi';
 import Config from '@/app/config';
-
+import { parseEther } from 'viem';
 const useMintCommand = () => {
   const { data, error, isError, write, writeAsync } = useContractWrite({
     address: Config.SAMURAI_WARRIORS_ADDRESS as any,
@@ -8,19 +8,21 @@ const useMintCommand = () => {
       {
         inputs: [
           {
-            internalType: 'address',
-            name: 'to',
-            type: 'address',
-          },
+            internalType: "address",
+            name: "to",
+            type: "address"
+          }
         ],
-        name: 'buyCard',
+        name: "buyCard",
         outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
-      },
+        stateMutability: "payable",
+        type: "function"
+      }
     ],
     functionName: 'buyCard',
     mode: 'recklesslyUnprepared',
+    value: parseEther('0.01')
+
   });
 
   const { isLoading, isSuccess } = useWaitForTransaction({
